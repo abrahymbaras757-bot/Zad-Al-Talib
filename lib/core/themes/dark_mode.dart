@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 ThemeData darkMode = ThemeData(
   colorScheme: ColorScheme.dark(
-    surface: const Color(0xff121212),
-    primary: const Color.fromARGB(255, 122, 122, 122),
-    secondary: const Color.fromARGB(255, 30, 30, 30),
-    tertiary: const Color.fromARGB(255, 47, 47, 47),
-    inversePrimary: Colors.green.shade600,
+    surface: Color(0xff121212), // خلفية التطبيق (Scaffold, خلفية الشاشة)
+    primary: Color(0xff1E293B), // AppBar, BottomNavigationBar, Buttons الأساسية
+    secondary: Color(0xff22C55E), // أزرار التأكيد (حفظ – تسجيل – إرسال)
+    tertiary: Color(0xff0F766E), // عناصر مساعدة (Chips, Badges, Icons)
+    inversePrimary: Color(0xffCBD5E1), // لون النص أو الأيقونة فوق primary
+    error: Color(0xffF87171), // أخطاء، تنبيهات، Validation
+    outline: Color(0xff334155), // حدود الحقول، الكروت، الـ Divider
+    surfaceVariant: Color(0xff1E293B), // خلفية Cards, Containers, TextFields
   ),
 );
