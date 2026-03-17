@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zad_altalib/core/services/auth_services.dart';
+import 'package:zad_altalib/features/admin_dashboard/views/admin_dashboard_views.dart';
 import 'package:zad_altalib/features/auth/widgets/custom_button.dart';
-import 'package:zad_altalib/features/auth/widgets/custom_radio_list.dart';
-import 'package:zad_altalib/features/home/views/home_views.dart';
+import 'package:zad_altalib/providers/user_provider.dart';
+import 'package:zad_altalib/shared/custom_radio_list.dart';
+import 'package:zad_altalib/features/teacher_dashboard/views/teacher_dashboard_views.dart';
+import 'package:zad_altalib/model/user_model.dart';
+import 'package:zad_altalib/root.dart';
 import 'package:zad_altalib/shared/custom_dropdown.dart';
 import 'package:zad_altalib/shared/custom_text.dart';
 import 'package:zad_altalib/shared/custom_text_field.dart';
@@ -16,13 +22,15 @@ class LoginViews extends StatefulWidget {
 
 class _LoginViewsState extends State<LoginViews> {
   Option? _selectedOption; // الاختيار المبدئي  = null
-  final TextEditingController nemaController = TextEditingController();
+  String? loginError;
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController pasController = TextEditingController();
   final List<String> items = ['الاولى', 'الثانية', 'الثالثة', 'الرابعة'];
   final GlobalKey<FormState> _formkey = GlobalKey();
 
+  @override
   void dispose() {
-    nemaController.dispose();
+    nameController.dispose();
     pasController.dispose();
     super.dispose();
   }
@@ -49,8 +57,8 @@ class _LoginViewsState extends State<LoginViews> {
               child: Column(
                 children: [
                   // شعار التطبيق
-                  Container(width: 280, child: Image.asset('assets/zad.png')),
-                  // نص
+                  SizedBox(width: 280, child: Image.asset('assets/zad.png')),
+
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -75,7 +83,7 @@ class _LoginViewsState extends State<LoginViews> {
                               CustomTextField(
                                 hint: 'اسم المستخدم',
                                 ispassword: false,
-                                controller: nemaController,
+                                controller: nameController,
                                 sideColor: Theme.of(
                                   context,
                                 ).colorScheme.outline,
@@ -149,7 +157,6 @@ class _LoginViewsState extends State<LoginViews> {
                                         ),
                                       ),
                                     ),
-
                                     Expanded(
                                       child: Directionality(
                                         textDirection: TextDirection.ltr,
@@ -178,12 +185,68 @@ class _LoginViewsState extends State<LoginViews> {
                                 text: 'دخول',
                                 onTap: () {
                                   if (_formkey.currentState!.validate()) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => HomeViews(),
-                                      ),
+                                    final user = AuthServices.login(
+                                      nameController.text,
+                                      pasController.text,
                                     );
+                                    if (user != null) {
+                                      if (user.role == UserRole.student &&
+                                          user.isActive == true) {
+                                        final userProvider =
+                                            Provider.of<UserProvider>(
+                                              context,
+                                              listen: false,
+                                            );
+                                        userProvider.login(user);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                Root(currentUser: user),
+                                          ),
+                                        );
+                                      } else if (user.role ==
+                                              UserRole.teacher &&
+                                          user.isActive == true) {
+                                        final userProvider =
+                                            Provider.of<UserProvider>(
+                                              context,
+                                              listen: false,
+                                            );
+                                        userProvider.login(user);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                TeacherDashboardViews(),
+                                          ),
+                                        );
+                                      } else if (user.role == UserRole.admin &&
+                                          user.isActive == true) {
+                                        final userProvider =
+                                            Provider.of<UserProvider>(
+                                              context,
+                                              listen: false,
+                                            );
+
+                                        userProvider.login(user);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                AdminDashboardViews(),
+                                          ),
+                                        );
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text('بيانات غير صحيحة'),
+                                        ),
+                                      );
+                                    }
                                   }
                                 },
                               ),

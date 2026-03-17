@@ -11,6 +11,9 @@ class CustomTextField extends StatefulWidget {
     this.hintColor,
     this.iconColor,
     this.textColor,
+    this.width,
+    this.height,
+    this.maxLines,
   });
   final String hint;
   final bool ispassword;
@@ -19,6 +22,9 @@ class CustomTextField extends StatefulWidget {
   final Color? hintColor;
   final Color? iconColor;
   final Color? textColor;
+  final double? width;
+  final double? height;
+  final int? maxLines;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -42,44 +48,51 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl, // اتجاه انص
-      child: TextFormField(
-        controller: widget.controller,
-        cursorHeight: 20,
-        validator: (v) {
-          if (v == null || v.isEmpty) {
-            return ' الرجاء ملاء حقل ${widget.hint}';
-          }
-          null;
-        },
-        cursorColor: Theme.of(context).colorScheme.primary,
-        obscureText: _obscureText,
-        style: TextStyle(color: widget.textColor ?? Colors.white),
-        decoration: InputDecoration(
-          errorStyle: TextStyle(color: Colors.green),
-          suffixIcon: widget.ispassword
-              ? GestureDetector(
-                  onTap: _togglePassword,
-                  child: Icon(
-                    _obscureText
-                        ? CupertinoIcons.eye_slash
-                        : CupertinoIcons.eye,
-                    //CupertinoIcons.eye,
-                    color: widget.iconColor ?? Colors.white,
-                  ),
-                )
-              : null,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: widget.sideColor ?? Colors.white),
+      child: SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: TextFormField(
+          controller: widget.controller,
+          cursorHeight: 20,
+          maxLines: widget.maxLines ?? 1,
+          // ignore: body_might_complete_normally_nullable
+          validator: (v) {
+            if (v == null || v.isEmpty) {
+              return ' يرجى إدخال ${widget.hint}';
+            }
+            null;
+          },
+
+          cursorColor: Theme.of(context).colorScheme.primary,
+          obscureText: _obscureText,
+          style: TextStyle(color: widget.textColor ?? Colors.white),
+          decoration: InputDecoration(
+            errorStyle: TextStyle(color: Colors.green),
+            suffixIcon: widget.ispassword
+                ? GestureDetector(
+                    onTap: _togglePassword,
+                    child: Icon(
+                      _obscureText
+                          ? CupertinoIcons.eye_slash
+                          : CupertinoIcons.eye,
+                      //CupertinoIcons.eye,
+                      color: widget.iconColor ?? Colors.white,
+                    ),
+                  )
+                : null,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: widget.sideColor ?? Colors.white),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: widget.sideColor ?? Colors.white),
+            ),
+            hintText: widget.hint,
+            hintStyle: TextStyle(color: widget.hintColor ?? Colors.white),
+            fillColor: Colors.transparent,
+            filled: true,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: widget.sideColor ?? Colors.white),
-          ),
-          hintText: widget.hint,
-          hintStyle: TextStyle(color: widget.hintColor ?? Colors.white),
-          fillColor: Colors.transparent,
-          filled: true,
         ),
       ),
     );

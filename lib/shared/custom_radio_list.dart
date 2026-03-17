@@ -23,7 +23,9 @@ class CustomRadioList extends StatelessWidget {
       child: RadioListTile<Option>(
         title: Text(title, style: TextStyle(color: titleColor ?? Colors.white)),
         value: value,
+        // ignore: deprecated_member_use
         groupValue: groupValue,
+        // ignore: deprecated_member_use
         onChanged: onChanged,
 
         //activeColor: Colors.teal, // تغير الون عند الاختيار
