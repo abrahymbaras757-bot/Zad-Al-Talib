@@ -26,7 +26,7 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     screens_user = [HomeViews(), FavoritesViews()];
-    screens_teacher = [TeacherDashboardViews()];
+    screens_teacher = [TeacherDashboardViews(currentUser: widget.currentUser)];
     screens_admin = [AdminDashboardViews()];
     controller = PageController(initialPage: currentScreen);
     super.initState();

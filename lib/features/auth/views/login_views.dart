@@ -218,7 +218,9 @@ class _LoginViewsState extends State<LoginViews> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (_) =>
-                                                TeacherDashboardViews(),
+                                                TeacherDashboardViews(
+                                                  currentUser: user,
+                                                ),
                                           ),
                                         );
                                       } else if (user.role == UserRole.admin &&

@@ -108,7 +108,7 @@ class CardMaterial extends StatelessWidget {
                       ),
                     ],
                   ),
-                SizedBox(width: 70),
+                SizedBox(width: nameTeacher != null ? 75 : 125),
                 Icon(Icons.star, size: 16, color: Colors.amber),
                 CustomText(
                   text: rating ?? '0.0',
