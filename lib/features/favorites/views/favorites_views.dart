@@ -26,7 +26,7 @@ class FavoritesViews extends StatelessWidget {
 
         actions: [
           Padding(
-            padding: const EdgeInsets.only(left: 119.0),
+            padding: const EdgeInsets.only(left: 93.0),
             child: Builder(
               builder: (context) {
                 return IconButton(
@@ -39,10 +39,11 @@ class FavoritesViews extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 170.0),
+            padding: const EdgeInsets.only(left: 160.0),
             child: CustomText(
               text: 'المفضلة',
               size: 20,
+              weight: FontWeight.bold,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),

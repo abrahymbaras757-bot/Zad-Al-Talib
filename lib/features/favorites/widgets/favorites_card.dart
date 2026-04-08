@@ -92,8 +92,8 @@ class FavoritesCard extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0,
-                                vertical: 6.0,
+                                horizontal: 6.0,
+                                vertical: 3.5,
                               ),
                               child: Row(
                                 mainAxisAlignment:
@@ -117,14 +117,15 @@ class FavoritesCard extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                              // ignore: deprecated_member_use
                               color: theme.colorScheme.tertiary.withOpacity(
                                 0.30,
                               ),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                                vertical: 4.0,
+                                horizontal: 6.0,
+                                vertical: 3.5,
                               ),
                               child: Row(
                                 children: [

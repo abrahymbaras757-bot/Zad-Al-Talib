@@ -4,6 +4,7 @@ import 'package:zad_altalib/core/themes/theme_provider.dart';
 import 'package:zad_altalib/features/auth/views/login_views.dart';
 import 'package:zad_altalib/features/auth/widgets/custom_button.dart';
 import 'package:zad_altalib/shared/custom_text.dart';
+import 'package:zad_altalib/shared/row_two_parts.dart';
 
 // قائمة جانبية
 class AppDrawer extends StatelessWidget {
@@ -62,6 +63,7 @@ class AppDrawer extends StatelessWidget {
             title: CustomText(text: 'اللغة', size: 19),
             onTap: () {},
           ),
+          Divider(color: Colors.grey),
           ListTile(
             leading: Icon(Icons.code),
             title: CustomText(text: 'المطورين', size: 19),
@@ -75,31 +77,26 @@ class AppDrawer extends StatelessWidget {
                       title: CustomText(text: 'فريق التطوير', size: 19),
                       actions: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 50.0),
+                          padding: const EdgeInsets.only(left: 37.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CustomText(
                                 text: 'تم تطوير هاذا التطبيق بواسطة :',
                                 size: 17,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
-                              Row(
-                                children: [
-                                  CustomText(text: 'المطور : ', size: 17),
-                                  CustomText(text: 'محسن العتيقي', size: 17),
-                                ],
+                              RowTwoParts(
+                                titel: 'المطور : ',
+                                text: 'سالم اليسلمي',
                               ),
-                              Row(
-                                children: [
-                                  CustomText(text: 'المطور : ', size: 17),
-                                  CustomText(text: 'سالم اليسلمي', size: 17),
-                                ],
+                              RowTwoParts(
+                                titel: 'المطور : ',
+                                text: 'ابراهيم باراس',
                               ),
-                              Row(
-                                children: [
-                                  CustomText(text: 'المطور : ', size: 17),
-                                  CustomText(text: 'ابراهيم باراس', size: 17),
-                                ],
+                              RowTwoParts(
+                                titel: 'المطور : ',
+                                text: 'محسن العتيقي',
                               ),
                             ],
                           ),
@@ -111,7 +108,7 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          Divider(color: Colors.grey),
           SwitchListTile(
             secondary: Icon(Icons.dark_mode),
             title: CustomText(text: 'الوضع المظلم', size: 19),
@@ -120,7 +117,9 @@ class AppDrawer extends StatelessWidget {
               themeProvider.toggleTheme(v);
             },
           ),
-          SizedBox(height: 290),
+          Divider(color: Colors.grey),
+          //Spacer(),
+          //SizedBox(height: 250),
           ListTile(
             leading: Icon(Icons.logout_outlined),
             title: CustomText(text: 'تسجيل خروج', size: 19),
@@ -138,29 +137,35 @@ class AppDrawer extends StatelessWidget {
                       ),
                     ),
                     actions: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CustomButton(
-                          width: 100,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          text: 'الغاء',
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CustomButton(
-                          width: 100,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          text: 'موافق',
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => LoginViews()),
-                            );
-                          },
-                        ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CustomButton(
+                              width: 100,
+                              color: Theme.of(context).colorScheme.tertiary,
+                              text: 'الغاء',
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CustomButton(
+                              width: 100,
+                              color: Theme.of(context).colorScheme.tertiary,
+                              text: 'موافق',
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => LoginViews(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   );
@@ -168,6 +173,7 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
+          Divider(color: Colors.grey),
         ],
       ),
     );

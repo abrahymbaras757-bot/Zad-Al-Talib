@@ -101,7 +101,7 @@ class _TeacherDashboardDetailsViewsState
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: Padding(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Row(
                     children: [
                       CustomText(
@@ -131,7 +131,7 @@ class _TeacherDashboardDetailsViewsState
                         child: Directionality(
                           textDirection: TextDirection.rtl,
                           child: CustomRadio(
-                            title: 'Youtube',
+                            title: 'فيديو',
                             value: ContentType.youtube,
                             groupValue: _selectdContentType,
                             onChanged: (value) {
@@ -190,9 +190,9 @@ class _TeacherDashboardDetailsViewsState
                         await pickPdf();
                       },
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 200),
                     CustomButton(
-                      width: 300,
+                      width: 330,
                       color: Theme.of(context).colorScheme.tertiary,
                       text: 'إضافة محتوى PDF',
                       onTap: () {

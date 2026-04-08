@@ -93,7 +93,7 @@ class TeacherDashboardViews extends StatelessWidget {
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.72,
+                      childAspectRatio: 0.65,
                     ),
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final course = teacherCourses[index];

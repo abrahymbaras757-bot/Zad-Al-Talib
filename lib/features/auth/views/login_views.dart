@@ -63,11 +63,14 @@ class _LoginViewsState extends State<LoginViews> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
                       ),
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(7.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -138,7 +141,6 @@ class _LoginViewsState extends State<LoginViews> {
                                         context,
                                       ).colorScheme.inversePrimary,
                                     ),
-
                                     Expanded(
                                       child: Directionality(
                                         textDirection: TextDirection.ltr,
@@ -157,6 +159,7 @@ class _LoginViewsState extends State<LoginViews> {
                                         ),
                                       ),
                                     ),
+                                    // Radio 2
                                     Expanded(
                                       child: Directionality(
                                         textDirection: TextDirection.ltr,

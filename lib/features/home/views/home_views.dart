@@ -119,10 +119,10 @@ class _HomeViewsState extends State<HomeViews> {
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(65),
+                    topLeft: Radius.circular(55),
                     topRight: Radius.circular(5),
                     bottomLeft: Radius.circular(5),
-                    bottomRight: Radius.circular(65),
+                    bottomRight: Radius.circular(55),
                   ),
                 ),
                 child: Padding(
@@ -294,7 +294,8 @@ class _HomeViewsState extends State<HomeViews> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            childAspectRatio: 0.61,
+                            childAspectRatio: 0.55,
+                            //crossAxisSpacing: 1.0,
                           ),
                       delegate: SliverChildBuilderDelegate((context, index) {
                         final data = courses[index];
