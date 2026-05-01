@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:zad_altalib/shared/custom_text.dart';
 
@@ -71,6 +72,7 @@ class _PdfViewerViewsState extends State<PdfViewerViews> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _controller.jumpToPage(1);
+          //print(widget.assetPath);
         },
         child: Icon(Icons.first_page),
       ),
